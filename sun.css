@@ -1,0 +1,124 @@
+margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #87CEEB 0%, #98D8E8 50%, #F0F8FF 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .sun-container {
+            position: relative;
+            width: 140px;  /* Smaller container */
+            height: 140px;
+        }
+
+        .sun {
+            position: absolute;
+            top: 15em;
+            left: 15em;
+            width: 10em;
+            height: 10em;
+            background-color: yellow;
+            border-radius: 50%;
+            box-shadow: 0 0 3em white;
+        }
+
+        /* Adjusted smaller rays */
+        .ray {
+            position: absolute;
+            background: linear-gradient(90deg, transparent 0%, #FFD700 50%, transparent 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 15px #FFD700;
+            animation: rayRotate 8s linear infinite;
+        }
+
+        .ray:nth-child(1) { width: 6px; height: 42px; top: -14px; left: 39px; transform: rotate(0deg); }
+        .ray:nth-child(2) { width: 4px; height: 35px; top: 7px; left: 63px; transform: rotate(45deg); }
+        .ray:nth-child(3) { width: 7px; height: 49px; top: -3px; right: -10px; transform: rotate(90deg); }
+        .ray:nth-child(4) { width: 5px; height: 38px; bottom: 7px; right: 59px; transform: rotate(135deg); }
+        .ray:nth-child(5) { width: 6px; height: 45px; bottom: -14px; left: 39px; transform: rotate(180deg); }
+        .ray:nth-child(6) { width: 4px; height: 35px; bottom: 7px; left: 17px; transform: rotate(225deg); }
+        .ray:nth-child(7) { width: 7px; height: 49px; top: -3px; left: -10px; transform: rotate(270deg); }
+        .ray:nth-child(8) { width: 5px; height: 38px; top: 7px; left: -3px; transform: rotate(315deg); }
+
+        /* Smaller inner rays */
+        .inner-ray {
+            position: absolute;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 215, 0, 0.8) 50%, transparent 100%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rayRotate 12s linear infinite reverse;
+        }
+
+        .inner-ray:nth-child(9) { width: 3px; height: 21px; transform: translate(-50%, -50%) rotate(0deg); }
+        .inner-ray:nth-child(10) { width: 2px; height: 17px; transform: translate(-50%, -50%) rotate(45deg); }
+        .inner-ray:nth-child(11) { width: 3px; height: 24px; transform: translate(-50%, -50%) rotate(90deg); }
+
+        @keyframes sunPulse {
+            0% {
+                box-shadow: 
+                    0 0 40px #FFD700,
+                    0 0 80px #FFA500,
+                    0 0 120px #FF8C00,
+                    inset 0 0 15px rgba(255, 255, 255, 0.3);
+                transform: scale(1);
+            }
+            100% {
+                box-shadow: 
+                    0 0 50px #FFD700,
+                    0 0 100px #FFA500,
+                    0 0 160px #FF8C00,
+                    0 0 240px rgba(255, 165, 0, 0.3),
+                    inset 0 0 20px rgba(255, 255, 255, 0.4);
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes rayRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Smaller lens flare */
+        .lens-flare {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 220px;  /* Smaller flare */
+            height: 220px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: flarePulse 4s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes flarePulse {
+            0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+    <div class="sun-container">
+        <div class="lens-flare"></div>
+        <div class="sun">
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="inner-ray"></div>
+            <div class="inner-ray"></div>
+            <div class="inner-ray"></div>
+        </div>
+    </div>
+</body>
